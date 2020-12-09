@@ -10,8 +10,8 @@ import { AuthService } from '../service/auth.service';
 })
 export class CadastroComponent implements OnInit {
 
-  user: User = new User()
-  senha:string
+  usuario: User = new User()
+  senha: string
   constructor(
     private authService: AuthService,
     private router: Router
@@ -23,16 +23,15 @@ export class CadastroComponent implements OnInit {
     this.senha = event.target.value
   }
 
-  cadastrar(){
-    
-    if(this.senha === this.user.senha){
-      this.authService.cadastrar(this.user).subscribe((resp: User) => {
-        this.user = resp
+  cadastrar(){ 
+    if(this.senha === this.usuario.senha){
+      this.authService.cadastrar(this.usuario).subscribe((resp: User) => {
+        this.usuario = resp
         this.router.navigate(['/login'])
         alert('Usuário cadastrado com sucesso')
       })
     }else{
-      alert("Suas senhas não conferem")
+      alert('Suas senhas não conferem')
     }  
   }
 }
